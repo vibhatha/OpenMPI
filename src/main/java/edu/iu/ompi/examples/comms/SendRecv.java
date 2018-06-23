@@ -1,18 +1,16 @@
-package edu.iu.ompi.comms;
+package edu.iu.ompi.examples.comms;
 
-import edu.iu.ompi.constants.Constants;
-import mpi.MPI;
-import mpi.MPIException;
-
+import mpi.*;
 import java.util.logging.Logger;
+//import edu.iu.ise.dsvwn.constants.Constants;
 
-public class AllReduce {
+public class SendRecv {
 
     static{
-        System.setProperty(Constants.LOG_TYPE, Constants.LOG_FORMAT);
+        System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
     }
 
-    public final static Logger LOG = Logger.getLogger(AllReduce.class.getName());
+    public final static Logger LOG = Logger.getLogger(SendRecv.class.getName());
 
     public static void main(String[] args) throws MPIException {
         MPI.Init(args);
@@ -26,7 +24,7 @@ public class AllReduce {
 
         int number = 0 ;
 
-        if(world_rank == 0){
+        if(world_rank==0){
             LOG.info("World Size : " + world_size);
         }
 
@@ -42,3 +40,4 @@ public class AllReduce {
         MPI.Finalize();
     }
 }
+

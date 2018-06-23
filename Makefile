@@ -11,25 +11,29 @@ crunSenRecv:
 	mpirun -np 2 java -classpath "classes" edu.iu.ompi.comms.SendRecv
 
 runSendRecv:
-	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.comms.SendRecv
+	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.SendRecv
 
 runTest:
-	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.test.Test
+	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.Test
 
 runRing:
-	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.comms.Ring
+	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.Ring
 
 runAllReduce:
-	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.comms.AllReduce
+	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.AllReduce 4
 
 runMyBcast:
-	mpirun -np 4  java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.test.MyBroadCast
+	mpirun -np 4  java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.MyBroadCast
 
 runBcastComp:
-	mpirun -np 4  java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.test.BroadCastComp 2 10
+	mpirun -np 4  java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.BroadCastComp 2 10
 
 runReduce:
-	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.comms.Reduce 4
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.Reduce 4
 
 runReduceTest:
-	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.test.ReduceTest
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.ReduceTest
+
+runReduceAdvanced:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.ReduceAdvanced 4
+

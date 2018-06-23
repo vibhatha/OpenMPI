@@ -1,4 +1,4 @@
-package edu.iu.ompi.test;
+package edu.iu.ompi.examples.test;
 
 import mpi.MPI;
 import mpi.MPIException;

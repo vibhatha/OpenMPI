@@ -1,13 +1,11 @@
-package edu.iu.ompi.test;
+package edu.iu.ompi.examples.comms;
 
-import edu.iu.ompi.comms.Reduce;
 import edu.iu.ompi.constants.Constants;
 import mpi.MPI;
 import mpi.MPIException;
-
 import java.util.logging.Logger;
 
-public class ReduceAdvanced {
+public class Reduce {
 
     static{
         System.setProperty(Constants.LOG_TYPE, Constants.LOG_FORMAT);
@@ -18,7 +16,7 @@ public class ReduceAdvanced {
     public static void main(String[] args) throws MPIException {
         MPI.Init(args);
         if(args.length==0){
-            LOG.info("Usage : Read Makefile");
+           LOG.info("Usage : Read Makefile");
             MPI.Finalize();
         }
 
@@ -34,13 +32,13 @@ public class ReduceAdvanced {
             localSum[0] += randomNumbers[i];
         }
 
-        System.out.printf("\n Local Sum For Process %d - %f, avg = %f \n ", world_rank, localSum[0], (double)localSum[0]/noOfElementsPerProcs);
+        System.out.printf("\nLocal Sum For Process %d - %f, avg = %f\n ", world_rank, localSum[0], (double)localSum[0]/noOfElementsPerProcs);
 
         double globalSum [] = new double [1];
         MPI.COMM_WORLD.reduce(localSum, globalSum, 1, MPI.DOUBLE, MPI.SUM, 0);
 
         if(world_rank == 0) {
-            System.out.printf("\n Total Sum : %f, avg = %f \n", globalSum[0], (float)globalSum[0] /(float)(world_size * noOfElementsPerProcs));
+            System.out.printf("\nTotal Sum : %f, avg = %f \n", globalSum[0], (float)globalSum[0] /(float)(world_size * noOfElementsPerProcs));
         }
         MPI.COMM_WORLD.barrier();
         MPI.Finalize();
@@ -55,3 +53,5 @@ public class ReduceAdvanced {
         return randomNumbers;
     }
 }
+
+

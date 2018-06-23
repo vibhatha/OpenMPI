@@ -1,18 +1,21 @@
-package edu.iu.ompi.comms;
+package edu.iu.ompi.examples.comms;
 
-import mpi.*;
+import edu.iu.ompi.constants.Constants;
+import mpi.MPI;
+import mpi.MPIException;
+
 import java.util.logging.Logger;
-//import edu.iu.ise.dsvwn.constants.Constants;
 
-public class SendRecv {
+public class BroadCast {
 
     static{
-        System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
+        System.setProperty(Constants.LOG_TYPE, Constants.LOG_FORMAT);
     }
 
-    public final static Logger LOG = Logger.getLogger(SendRecv.class.getName());
+    public final static Logger LOG = Logger.getLogger(BroadCast.class.getName());
 
     public static void main(String[] args) throws MPIException {
+
         MPI.Init(args);
         int world_rank = MPI.COMM_WORLD.getRank();
         int world_size = MPI.COMM_WORLD.getSize() ;
@@ -38,6 +41,7 @@ public class SendRecv {
         }
 
         MPI.Finalize();
-    }
-}
 
+    }
+
+}

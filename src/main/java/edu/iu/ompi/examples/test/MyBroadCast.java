@@ -1,4 +1,4 @@
-package edu.iu.ompi.test;
+package edu.iu.ompi.examples.test;
 
 import edu.iu.ompi.constants.Constants;
 import mpi.MPI;
