@@ -26,3 +26,8 @@ runMyBcast:
 runBcastComp:
 	mpirun -np 4  java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.test.BroadCastComp 2 10
 
+runReduce:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.comms.Reduce 4
+
+runReduceTest:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.test.ReduceTest
