@@ -1,3 +1,5 @@
+install:
+	mvn clean install
 package:
 	mvn clean
 	mvn package
