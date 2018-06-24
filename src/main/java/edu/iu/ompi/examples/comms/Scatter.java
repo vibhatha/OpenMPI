@@ -15,57 +15,34 @@ public class Scatter {
         int world_rank = MPI.COMM_WORLD.getRank();
         int world_size = MPI.COMM_WORLD.getSize();
 
-        int elementsPerProcs = 2;
+        int noPerProcs = 4;
 
-        double randomNumbers [] = new double [elementsPerProcs * world_size];
 
-        if (world_rank == 0) {
-            randomNumbers = genRandomDouble(elementsPerProcs * world_size);
-            System.out.println("Original Array : " + Arrays.toString(randomNumbers));
-        }
+        int [] scatterData = new int[noPerProcs * world_size];
 
-        double subAverage [] = new double[elementsPerProcs];
+        int [] recvScatterData = new int[noPerProcs];
 
-        MPI.COMM_WORLD.scatter(randomNumbers, elementsPerProcs, MPI.DOUBLE, subAverage,
-                elementsPerProcs, MPI.DOUBLE, 0);
+        scatterData = genRandomInt(noPerProcs * world_size);
 
-        double [] subAverages = null;
+        MPI.COMM_WORLD.scatter(scatterData, noPerProcs, MPI.INT, recvScatterData, noPerProcs, MPI.INT, 0);
 
-        if (world_rank == 0) {
-            subAverages = new double[world_size];
-        }
 
-        MPI.COMM_WORLD.gather(subAverage, 1, MPI.DOUBLE, subAverages, 1, MPI.DOUBLE, 0);
+        System.out.println("Rank : " + world_rank + ", Scatter Data : " + Arrays.toString(recvScatterData) + "\n");
 
-        if (world_rank == 0) {
-            double average = computeAverage(subAverages);
-            System.out.println(" Average : " + average);
+        if(world_rank == 0) {
+            System.out.println("All Data : " + Arrays.toString(scatterData));
         }
 
         MPI.Finalize();
-
     }
 
-    public static double [] genRandomDouble(int noOfElements) {
-        double [] rands = new double [noOfElements];
+    public static int [] genRandomInt(int noOfElements) {
+        int [] rands = new int [noOfElements];
         Random random = new Random();
         for (int i = 0; i < noOfElements; i++) {
-            rands[i] = random.nextDouble();
+            rands[i] = random.nextInt();
         }
 
         return rands;
-    }
-
-    public static double computeAverage(double [] values) {
-        double avg = 0.0;
-
-        for (int i = 0; i < values.length; i++) {
-            avg += values[i];
-        }
-
-        avg = avg / values.length;
-
-
-        return avg;
     }
 }

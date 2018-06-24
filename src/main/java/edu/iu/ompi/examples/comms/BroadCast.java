@@ -21,10 +21,10 @@ public class BroadCast {
         MPI.Init(args);
         int world_rank = MPI.COMM_WORLD.getRank();
         int world_size = MPI.COMM_WORLD.getSize() ;
-        int message[] = new int [1];
 
         if(world_size < 2){
             LOG.info("World Size must be greater than 1");
+            MPI.Finalize();
         }
 
         int noOfElements = 10;

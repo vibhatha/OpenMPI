@@ -1,4 +1,4 @@
-package edu.iu.ompi.examples.test;
+package edu.iu.ompi.examples.test.average;
 
 import edu.iu.ompi.examples.comms.Reduce;
 import edu.iu.ompi.constants.Constants;
