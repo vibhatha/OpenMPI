@@ -1,4 +1,4 @@
-package edu.iu.ompi.examples.comms;
+package edu.iu.ompi.examples.test;
 
 import mpi.MPI;
 import mpi.MPIException;
@@ -48,8 +48,12 @@ public class Ring {
 
             if (0 == myrank) {
                 --message[0];
-                System.out.println("Process 0 decremented value: " + message[0]);
+                System.out.println("Process 0 decremented value: " + message[0] + ", myRank : " + myrank);
+            } else {
+                System.out.println("Process 0 decremented value: " + message[0] + ", myRank : " + myrank);
             }
+
+
 
             MPI.COMM_WORLD.send(message, 1, MPI.INT, next, tag);
             if (0 == message[0]) {

@@ -4,6 +4,8 @@ import edu.iu.ompi.constants.Constants;
 import mpi.MPI;
 import mpi.MPIException;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.logging.Logger;
 
 public class BroadCast {
@@ -25,23 +27,38 @@ public class BroadCast {
             LOG.info("World Size must be greater than 1");
         }
 
-        int number = 0 ;
+        int noOfElements = 10;
 
-        if(world_rank==0){
-            LOG.info("World Size : " + world_size);
+        int sendData [] = genRandomInt(10);
+        MPI.COMM_WORLD.barrier();
+        double bcastTime = 0;
+        bcastTime -= MPI.wtime();
+
+        MPI.COMM_WORLD.bcast(sendData, noOfElements, MPI.INT, 0);
+
+        MPI.COMM_WORLD.barrier();
+        bcastTime += MPI.wtime();
+
+        if (world_rank != 0) {
+            System.out.println("Rank : " + world_rank + ", BroadCasted Values : " + Arrays.toString(sendData));
         }
 
         if (world_rank == 0) {
-            message[0] = -1;
-            MPI.COMM_WORLD.send(message, 1, MPI.INT, 1, 50 );
-            LOG.info("Message Sent : "+ message[0] + " @ Rank : " + world_rank);
-        }else if(world_rank == 1) {
-            MPI.COMM_WORLD.recv(message, 1, MPI.INT, 0, 50);
-            LOG.info("Message Received : "+ message[0] + " @ Rank : " + world_rank);
+            System.out.println(" Time Ta,lken : " + bcastTime);
         }
 
         MPI.Finalize();
 
+    }
+
+    public static int [] genRandomInt(int noOfElements) {
+        int [] rands = new int [noOfElements];
+        Random random = new Random();
+        for (int i = 0; i < noOfElements; i++) {
+            rands[i] = random.nextInt();
+        }
+
+        return rands;
     }
 
 }
