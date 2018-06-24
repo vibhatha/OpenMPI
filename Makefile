@@ -16,6 +16,9 @@ runSendRecv:
 runBcast:
 	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.BroadCast
 
+runScatter:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.Scatter
+
 runTest:
 	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.Test
 
