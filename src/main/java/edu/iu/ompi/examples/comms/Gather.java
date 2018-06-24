@@ -1,4 +1,4 @@
-package edu.iu.ompi.examples.test.average;
+package edu.iu.ompi.examples.comms;
 
 import mpi.MPI;
 import mpi.MPIException;
@@ -6,7 +6,7 @@ import mpi.MPIException;
 import java.util.Arrays;
 import java.util.Random;
 
-public class ScatterAndGather {
+public class Gather {
 
     public static void main(String[] args) throws MPIException {
 
@@ -29,23 +29,24 @@ public class ScatterAndGather {
         MPI.COMM_WORLD.scatter(randomNumbers, elementsPerProcs, MPI.DOUBLE, subRandomNums,
                 elementsPerProcs, MPI.DOUBLE, 0);
 
-        double [] subAverage = {computeAverage(subRandomNums)};
-
         System.out.println("Rank : " + world_rank + ", Scattered Data : " + Arrays.toString(subRandomNums)
-                + ", Average : " + Arrays.toString(subAverage) + "\n" );
+                + ", Average : " + Arrays.toString(subRandomNums) + "\n" );
 
         double [] subAverages = null;
 
         if (world_rank == 0) {
-            subAverages = new double[world_size];
+            subAverages = new double[elementsPerProcs * world_size];
         }
 
-        MPI.COMM_WORLD.gather(subAverage, 1, MPI.DOUBLE, subAverages, 1, MPI.DOUBLE, 0);
+        MPI.COMM_WORLD.gather(subRandomNums, elementsPerProcs, MPI.DOUBLE, subAverages, elementsPerProcs, MPI.DOUBLE, 0);
 
 
         if (world_rank == 0) {
-            double average = computeAverage(subAverages);
-            System.out.println(" Average : " + average);
+            System.out.println(" All Data From Gather : " + Arrays.toString(subAverages) + "\n");
+            System.out.println(" Original Data : " + Arrays.toString(randomNumbers) + "\n");
+            if (Arrays.equals(subAverages, randomNumbers)) {
+                System.out.println("Original Data = Gathered Data");
+            }
         }
 
         MPI.Finalize();
@@ -74,4 +75,5 @@ public class ScatterAndGather {
 
         return avg;
     }
+
 }
