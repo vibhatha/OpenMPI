@@ -17,7 +17,16 @@ runBcast:
 	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.BroadCast
 
 runScatter:
-	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.Scatter
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.Scatter	
+
+runGather:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.Gather
+
+runAllGather:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.AllGather
+
+runScatterNGather:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.average.ScatterAndGather
 
 runTest:
 	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.Test
@@ -41,5 +50,5 @@ runReduceTest:
 	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.ReduceTest
 
 runReduceAdvanced:
-	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.ReduceAdvanced 4
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.average.ReduceAdvanced 4
 
