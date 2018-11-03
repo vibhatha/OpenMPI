@@ -29,7 +29,7 @@ public class SendRecv {
         }
 
         if (world_rank == 0) {
-            message[0] = -1;
+            message[0] = -10;
             MPI.COMM_WORLD.send(message, 1, MPI.INT, 1, 50 );
             LOG.info("Message Sent : "+ message[0] + " @ Rank : " + world_rank);
         }else if(world_rank == 1) {

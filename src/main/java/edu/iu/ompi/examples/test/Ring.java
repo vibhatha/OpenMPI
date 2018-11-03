@@ -3,6 +3,8 @@ package edu.iu.ompi.examples.test;
 import mpi.MPI;
 import mpi.MPIException;
 
+import java.util.Random;
+
 public class Ring {
     public static void main(String[] args) throws MPIException {
         MPI.Init(args) ;
@@ -23,6 +25,8 @@ public class Ring {
 
         next = (myrank + 1) % size;
         prev = (myrank + size - 1) % size;
+
+
 
 	/* If we are the "master" process (i.e., MPI_COMM_WORLD rank 0),
 	   put the number of times to go around the ring in the

@@ -13,6 +13,15 @@ crunSenRecv:
 runSendRecv:
 	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.SendRecv
 
+runISendIRecv:
+	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.ISendIRecv
+
+runDSendRecv:
+	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.ring.DualSendRecv
+
+runDISendIRecv:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.ring.DualISendIRecv
+
 runBcast:
 	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.BroadCast
 
@@ -32,7 +41,7 @@ runTest:
 	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.Test
 
 runRing:
-	mpirun -np 8 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.Ring
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.Ring
 
 runAllReduce:
 	mpirun -np 2 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.comms.AllReduce 4
@@ -52,3 +61,5 @@ runReduceTest:
 runReduceAdvanced:
 	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.examples.test.average.ReduceAdvanced 4
 
+runMtSendRecv:
+	mpirun -np 4 java -cp target/OpenMPITutorials-1.0-SNAPSHOT.jar edu.iu.ompi.multithread.MtSendRecv
